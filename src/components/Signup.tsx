@@ -7,7 +7,7 @@ import { Button } from "./ui/button.tsx"
 import { Input } from "./ui/input.tsx"
 import { Label } from "./ui/label.tsx"
 import { Checkbox } from "./ui/checkbox.tsx"
-import {  useNavigate } from 'react-router-dom'
+import {  useNavigate, Link } from 'react-router-dom'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card.tsx"
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { ToastContainer } from "react-toastify"
@@ -69,9 +69,9 @@ const handleSignup = async (e) => {
     <div className="min-h-screen flex items-center justify-center bg-light">
       <Card className="w-full max-w-md bg-white">
         <CardHeader className="space-y-1">
-          <div className="flex justify-center mb-4">
-            <img src="/ngo-logo.svg" alt="NGO Logo" width={50} height={50} />
-          </div>
+        <Link className="flex items-center justify-center" to="/">
+          <img src="./ngoLogo.png" alt="NGO Logo" className="w-14 h-14 rounded-full" />
+        </Link>
           <CardTitle className="text-2xl font-bold text-center">Join Our Cause</CardTitle>
           <CardDescription className="text-center">
             Sign up to make a difference in the world 🌍
