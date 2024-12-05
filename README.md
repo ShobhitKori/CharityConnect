@@ -1,4 +1,4 @@
-# NGO WebApp 🌍
+# Charity Connect 🌍
 
 This React-based website for a Non-Profit Organization serves as a platform to connect donors with NGOs in need. The platform allows users to make monetary donations or contribute essential products to registered NGOs, ensuring that resources reach those who need them most. With a user-friendly interface, secure payment options, and a transparent tracking system, the website aims to promote a culture of giving and support community welfare.
 
