@@ -2,17 +2,38 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Button } from "./ui/button.tsx"
 import { Card, CardContent } from "./ui/card.tsx"
-import { HeartHandshake, Globe, Users, ArrowRight } from 'lucide-react'
+import {
+  HeartHandshake,
+  Globe,
+  Users,
+  ArrowRight,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+} from 'lucide-react'
+import { DynamicFavicon } from './DynamicFavicon.tsx';
+import ImageCarousel from './ImageCarousel.tsx';
+import { Input } from './ui/input.tsx';
+
+const backgroundImages = [
+  'https://www.genyuvaa.com/images/t_slider_1.jpg',
+  'https://helplocal.in/uploads/ngo/240435322_4776508312361277_7003867829429765616_n.jpg',
+  'https://jananidham.org/images/uploads/slider/homepage/banner2.jpg',
+  'https://images.squarespace-cdn.com/content/v1/5dc2f01d4543244bccdd8d6b/1580728380411-3L9XLBSLKJI4YNUZ9DC1/CWD-%E2%80%93-Volunteer-Header.png',
+  'https://hrdsindia.org/img/sub-banner-donate-one-brick.jpg'
+];
 
 const LandingPage: React.FC = () => {
   return (
     <div className="flex flex-col h-full min-h-screen justify-center">
+      <DynamicFavicon />
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link className="flex items-center justify-center" to="/">
-          <img src="/ngo-logo.svg" alt="NGO Logo" className="w-10 h-10" />
-          <span className="ml-2 text-2xl font-bold">NGO Name</span>
+          <img src="./ngoLogo.png" alt="NGO Logo" className="w-10 h-10 rounded-full" />
+          <span className="ml-2 text-3xl font-bold">Charity Connect</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
+        {/* <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link className="text-sm font-medium hover:underline underline-offset-4" to="#mission">
             Our Mission
           </Link>
@@ -22,31 +43,62 @@ const LandingPage: React.FC = () => {
           <Link className="text-sm font-medium hover:underline underline-offset-4" to="#get-involved">
             Get Involved
           </Link>
+        </nav> */}
+        <nav className="ml-auto flex gap-4 sm:gap-6 bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+          <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            {/* Left side: Logo and title */}
+            <div className="flex items-center">
+              <img
+                src="./ngologo.png"
+                alt="NPO Logo"
+                className="h-10 w-10 mr-3 rounded-full"
+              />
+              <span className="text-xl font-bold text-gray-800">
+                Charity Connect
+              </span>
+            </div>
+
+            {/* Right side: Navigation links */}
+            <div className="flex gap-4 ml-auto">
+              <Link className="text-sm font-medium hover:underline underline-offset-4" to="#mission">
+                Our Mission
+              </Link>
+              <Link className="text-sm font-medium hover:underline underline-offset-4" to="#impact">
+                Our Impact
+              </Link>
+              <Link className="text-sm font-medium hover:underline underline-offset-4" to="#get-involved">
+                Get Involved
+              </Link>
+            </div>
+          </div>
         </nav>
+
       </header>
+
       <main className="flex-1 items-center justify-center">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-purple-100">
-          <div className="container px-6 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Empowering Communities, Changing Lives
-                </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Join us in our mission to create lasting change and build a better world for all.
-                </p>
-              </div>
+        <section>
+          <header
+            id="header"
+            className="relative bg-gray-900 text-white py-32 mt-16 overflow-hidden"
+          >
+            <ImageCarousel images={backgroundImages} />
+            <div className="container mx-auto px-4 text-center relative z-10">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-shadow-lg">
+                Empowering Communities, Changing Lives
+              </h1>
+              <p className="text-xl mb-8 text-shadow-md">Join us in our mission to create lasting change and build a better world for all.</p>
               <div className="space-x-4">
-                <Button asChild>
+                <Button variant="outline" className='hover:bg-black' asChild>
                   <Link to="/signup">Get Started</Link>
                 </Button>
-                <Button variant="outline" asChild>
+                <Button variant="outline" className='hover:bg-black' asChild>
                   <Link to="#learn-more">Learn More</Link>
                 </Button>
               </div>
             </div>
-          </div>
+          </header>
         </section>
+
         <section id="mission" className="w-full py-12 md:py-24 lg:py-32 bg-white">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Our Mission</h2>
@@ -112,16 +164,82 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 NGO Name. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4" to="/terms">
-            Terms of Service
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" to="/privacy">
-            Privacy
-          </Link>
-        </nav>
+      <footer className="bg-black text-white py-12">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h4 className="text-2xl font-bold mb-4">Charity Connect</h4>
+            <p>
+              Making the world a better place through compassion and dedication.
+            </p>
+          </div>
+          <div>
+            <h5 className="text-xl font-semibold mb-4">Quick Links</h5>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Our Causes
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Get Involved
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="text-xl font-semibold mb-4">Connect With Us</h5>
+            <div className="flex space-x-4">
+              <a href="#" className="text-white hover:text-blue-400">
+                <Facebook />
+              </a>
+              <a href="#" className="text-white hover:text-blue-400">
+                <Twitter />
+              </a>
+              <a href="#" className="text-white hover:text-blue-400">
+                <Instagram />
+              </a>
+              <a href="#" className="text-white hover:text-blue-400">
+                <Linkedin />
+              </a>
+            </div>
+          </div>
+          <div>
+            <h5 className="text-xl font-semibold mb-4">Newsletter</h5>
+            <p className="mb-4">
+              Stay updated with our latest news and events.
+            </p>
+            <form className="flex">
+              <Input
+                type="email"
+                placeholder="Your email"
+                className="rounded-r-none"
+              />
+              <Button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-600 rounded-l-none"
+              >
+                Subscribe
+              </Button>
+            </form>
+          </div>
+        </div>
+        <div className="container mx-auto px-4 mt-8 pt-8 border-t border-gray-700 text-center flex-col">
+          <p>&copy; 2024 Charity Connect. All rights reserved.</p>
+          <p className="text-sm mt-4 pt-4">
+            Made with <span className="text-red-500">&hearts;</span> in India
+          </p>
+        </div>
       </footer>
     </div>
   );

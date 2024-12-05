@@ -30,7 +30,8 @@ const CashDonation: React.FC = () => {
 
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="flex justify-center">
+    <div className="bg-white p-6 rounded-lg shadow-md w-1/2">
       <h2 className="text-2xl font-bold mb-4">Cash Donation</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -41,7 +42,7 @@ const CashDonation: React.FC = () => {
             Donation Amount (₹)
           </label>
           <input
-            type="number"
+            type="text"
             id="amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
@@ -56,6 +57,7 @@ const CashDonation: React.FC = () => {
           Donate Now
         </button>
       </form>
+    </div>
     </div>
   );
 };

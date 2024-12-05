@@ -6,7 +6,7 @@ import { Button } from "./ui/button.tsx";
 import { Input } from "./ui/input.tsx";
 import { Label } from "./ui/label.tsx";
 import { Checkbox } from "./ui/checkbox.tsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -49,11 +49,12 @@ export default function Login() {
         body: JSON.stringify(loginInfo)
       });
       const result = await response.json();
-      const { success, message, jwtToken, name, error } = result;
+      const { success, message, jwtToken,email, name, error } = result;
       if (success) {
         handleSuccess(message);
         localStorage.setItem('token', jwtToken);
         localStorage.setItem('loggedInUser', name);
+        localStorage.setItem('loggedEmail', email);
         setTimeout(() => {
           navigate('/home')
         }, 1000)
@@ -71,9 +72,9 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-light">
       <Card className="w-full max-w-md bg-white">
         <CardHeader className="space-y-1">
-          <div className="flex justify-center mb-4">
-            <img src="/ngo-logo.svg" alt="NGO Logo" width={50} height={50} />
-          </div>
+        <Link className="flex items-center justify-center" to="/">
+          <img src="./ngoLogo.png" alt="NGO Logo" className="w-14 h-14 rounded-full" />
+        </Link>
           <CardTitle className="text-2xl font-bold text-center">
             Join Our Cause
           </CardTitle>
@@ -100,7 +101,7 @@ export default function Login() {
                 <Input
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Create a password"
+                  placeholder="Enter your password"
                   required
                   onChange={handleChange}
                 />
