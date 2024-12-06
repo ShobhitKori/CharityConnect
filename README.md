@@ -59,16 +59,32 @@ The app will be available at `http://localhost:3000`
 
 ## Project Structure
 
-CharityConnect                                                          <br>
-├── public/             # Static files                                  <br>
-├── src/                                                                <br>
-│   ├── components/     # Reusable UI components                        <br>
-│   ├── pages/          # Page components                               <br>
-│   ├── ui/             # Custom UI elements (e.g., Card, Button)       <br>
-│   ├── App.tsx         # Main app component                            <br>
-│   └── index.tsx       # Entry point                                   <br>
-├── package.json        # Project dependencies and scripts              <br>
-└── README.md           # Project documentation                         <br>
+CharityConnect/
+├── client/                         # Frontend folder
+│   ├── node_modules/               # Frontend dependencies
+│   ├── public/                     # Static files
+│   ├── src/                        # React app source
+│   │   ├── components/             # Reusable UI components
+│   │   ├── pages/                  # Page components
+│   │   ├── ui/                     # Custom UI elements (e.g., Card, Button)
+│   │   ├── App.js                  # Main app component
+│   │   └── index.js                # Entry point
+│   ├── package.json                # Frontend dependencies and scripts
+│   ├── tailwind.config.js          # Tailwind CSS configuration
+│   └── postcss.config.js           # PostCSS configuration
+├── server/                         # Backend folder
+│   ├── Controllers/                # Logic for routes
+│   ├── Middlewares/                # Custom middleware (e.g., authentication)
+│   ├── Models/                     # MongoDB schemas
+│   ├── Routes/                     # API endpoints
+│   ├── uploads/                    # For storing uploaded files
+│   ├── node_modules/               # Backend dependencies
+│   ├── .env                        # Environment variables (ignored by Git)
+│   ├── index.js                    # Entry point for the backend server
+│   ├── package.json                # Backend dependencies and scripts
+│   └── package-lock.json           # Lock file for backend dependencies
+├── .gitignore                      # Git ignore file
+├── README.md                       # Project documentation
 
 ## Contributing
 
