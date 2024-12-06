@@ -29,7 +29,10 @@ This React-based website for a Non-Profit Organization serves as a platform to c
 Ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (v14+)
-- [npm](https://www.npmjs.com/) 
+- [npm](https://www.npmjs.com/)
+- [mongodb](https://www.mongodb.com/try/download/community)
+  
+Create a free cluster in mongodb and paste your connection string in the server/.env file 
 
 ### Installation
 
@@ -41,21 +44,29 @@ git clone [https://github.com/ShobhitKori/CharityConnect](https://github.com/Sho
 
 2. Install dependencies:
 
-`npm install`
-
-Go to backend folder and install dependencies again:
-
-`cd backend` <br>
+CharityConnect `> cd server`
 
 `npm install`
+
+Go to server folder and install dependencies again:
+
+CharityConnect `> cd client`
+
+`npm install`
+
 
 ### Running the App
 
 To start the development server:
 
-`npm start`
+CharityConnect/client `> npm start`
 
 The app will be available at `http://localhost:3000`
+
+To start the database server:
+
+CharityConnect/server `> node index.js`
+
 
 ## Project Structure
 
