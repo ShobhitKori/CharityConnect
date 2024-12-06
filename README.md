@@ -59,7 +59,7 @@ The app will be available at `http://localhost:3000`
 
 ## Project Structure
 
-CharityConnect/
+CharityConnect/ <br>
 ├── client/                         # Frontend folder <br>
 │   ├── node_modules/               # Frontend dependencies <br>
 │   ├── public/                     # Static files <br>
