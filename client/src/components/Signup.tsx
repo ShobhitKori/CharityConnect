@@ -1,78 +1,90 @@
-
-"use client"
-import React from "react"
-import { useState } from "react"
+"use client";
+import React from "react";
+import { useState } from "react";
 // import Image from "next/image"
-import { Button } from "./ui/button.tsx"
-import { Input } from "./ui/input.tsx"
-import { Label } from "./ui/label.tsx"
-import { Checkbox } from "./ui/checkbox.tsx"
-import {  useNavigate, Link } from 'react-router-dom'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card.tsx"
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
-import { ToastContainer } from "react-toastify"
-import {handleError, handleSuccess } from './utils';
+import { Button } from "./ui/button.tsx";
+import { Input } from "./ui/input.tsx";
+import { Label } from "./ui/label.tsx";
+import { Checkbox } from "./ui/checkbox.tsx";
+import { useNavigate, Link } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "./ui/card.tsx";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { ToastContainer } from "react-toastify";
+import { handleError, handleSuccess } from "./utils";
+import { DynamicFavicon } from "./DynamicFavicon.tsx";
 // import Alert from "@mui/material/Alert";
 // import AlertTitle from "@mui/material/AlertTitle";
 
 export default function Signup() {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [signupInfo, setSignupInfo] = useState({
-    name: '',
-    email: '',
-    password: ''
-})
+    name: "",
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     const copySignupInfo = { ...signupInfo };
     copySignupInfo[name] = value;
-    console.log(name,value)
+    console.log(name, value);
     setSignupInfo(copySignupInfo);
-    console.log(signupInfo)
+    console.log(signupInfo);
+  };
+  // const [error, handleError] = useState("");
+  // const [success, setSuccess] = useState("");
 
-}
-// const [error, handleError] = useState("");
-// const [success, setSuccess] = useState("");
-
-const handleSignup = async (e) => {
-  e.preventDefault();
-  console.log(signupInfo)
-  try {
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    console.log(signupInfo);
+    try {
       const url = `http://localhost:8080/auth/signup`;
       const response = await fetch(url, {
-          method: "POST",
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(signupInfo)
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupInfo),
       });
       const result = await response.json();
       const { success, message, error } = result;
       if (success) {
         handleSuccess(message);
-          setTimeout(() => {
-              navigate('/signin')
-          }, 3000)
+        setTimeout(() => {
+          navigate("/signin");
+        }, 3000);
       } else if (error) {
-          const details = error?.details[0].message;
-          handleError(details);
+        const details = error?.details[0].message;
+        handleError(details);
       } else if (!success) {
-          handleError(message);
+        handleError(message);
       }
-  } catch (err) {
+    } catch (err) {
       handleError(err);
-  }
-}
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-light">
+      <DynamicFavicon />
       <Card className="w-full max-w-md bg-white">
         <CardHeader className="space-y-1">
-        <Link className="flex items-center justify-center" to="/">
-          <img src="./ngoLogo.png" alt="NGO Logo" className="w-14 h-14 rounded-full" />
-        </Link>
-          <CardTitle className="text-2xl font-bold text-center">Join Our Cause</CardTitle>
+          <Link className="flex items-center justify-center" to="/">
+            <img
+              src="./ngoLogo.png"
+              alt="NGO Logo"
+              className="w-14 h-14 rounded-full"
+            />
+          </Link>
+          <CardTitle className="text-2xl font-bold text-center">
+            Join Our Cause
+          </CardTitle>
           <CardDescription className="text-center">
             Sign up to make a difference in the world 🌍
           </CardDescription>
@@ -81,17 +93,24 @@ const handleSignup = async (e) => {
           <form className="space-y-4" onSubmit={handleSignup}>
             <div className="space-y-2">
               <Label htmlFor="name">Full Name</Label>
-              <Input name="name"
-              onChange={handleChange}
-              value={signupInfo.name}
-              placeholder="Enter your full name" required />
+              <Input
+                name="name"
+                onChange={handleChange}
+                value={signupInfo.name}
+                placeholder="Enter your full name"
+                required
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input name="email"
-              onChange={handleChange}
-              value={signupInfo.email}
-               type="email" placeholder="Enter your email" required />
+              <Input
+                name="email"
+                onChange={handleChange}
+                value={signupInfo.email}
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
             </div>
             {/* <div className="space-y-2">
               <Label htmlFor="phone">Phone</Label>
@@ -100,8 +119,8 @@ const handleSignup = async (e) => {
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative">
-                <Input 
-                  name="password" 
+                <Input
+                  name="password"
                   onChange={handleChange}
                   type={showPassword ? "text" : "password"}
                   placeholder="Create a password"
@@ -132,10 +151,13 @@ const handleSignup = async (e) => {
                 I agree to the terms and conditions
               </label>
             </div>
-            <Button className="w-full bg-purple-600 hover:bg-purple-700" type="submit">
+            <Button
+              className="w-full bg-purple-600 hover:bg-purple-700"
+              type="submit"
+            >
               Sign Up
             </Button>
-           
+
             <ToastContainer />
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -157,19 +179,30 @@ const handleSignup = async (e) => {
                 </svg>
               </Button>
               <Button variant="outline" size="sm">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </Button>
               <Button variant="outline" size="sm">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                 </svg>
               </Button>
             </div>
             <p className="text-center text-sm text-gray-500">
               Already have an account?{" "}
-              <a href="/signin" className="font-semibold text-purple-600 hover:underline">
+              <a
+                href="/signin"
+                className="font-semibold text-purple-600 hover:underline"
+              >
                 Sign in
               </a>
             </p>
@@ -177,6 +210,5 @@ const handleSignup = async (e) => {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
-
