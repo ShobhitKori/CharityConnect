@@ -60,31 +60,31 @@ The app will be available at `http://localhost:3000`
 ## Project Structure
 
 CharityConnect/
-├── client/                         # Frontend folder
-│   ├── node_modules/               # Frontend dependencies
-│   ├── public/                     # Static files
-│   ├── src/                        # React app source
-│   │   ├── components/             # Reusable UI components
-│   │   ├── pages/                  # Page components
-│   │   ├── ui/                     # Custom UI elements (e.g., Card, Button)
-│   │   ├── App.js                  # Main app component
-│   │   └── index.js                # Entry point
-│   ├── package.json                # Frontend dependencies and scripts
-│   ├── tailwind.config.js          # Tailwind CSS configuration
-│   └── postcss.config.js           # PostCSS configuration
-├── server/                         # Backend folder
-│   ├── Controllers/                # Logic for routes
-│   ├── Middlewares/                # Custom middleware (e.g., authentication)
-│   ├── Models/                     # MongoDB schemas
-│   ├── Routes/                     # API endpoints
-│   ├── uploads/                    # For storing uploaded files
-│   ├── node_modules/               # Backend dependencies
-│   ├── .env                        # Environment variables (ignored by Git)
-│   ├── index.js                    # Entry point for the backend server
-│   ├── package.json                # Backend dependencies and scripts
-│   └── package-lock.json           # Lock file for backend dependencies
-├── .gitignore                      # Git ignore file
-├── README.md                       # Project documentation
+├── client/                       <br>  # Frontend folder
+│   ├── node_modules/             <br>  # Frontend dependencies
+│   ├── public/                   <br>  # Static files
+│   ├── src/                      <br>  # React app source
+│   │   ├── components/           <br>  # Reusable UI components
+│   │   ├── pages/                <br>  # Page components
+│   │   ├── ui/                   <br>  # Custom UI elements (e.g., Card, Button)
+│   │   ├── App.js                <br>  # Main app component
+│   │   └── index.js              <br>  # Entry point
+│   ├── package.json              <br>  # Frontend dependencies and scripts
+│   ├── tailwind.config.js        <br>  # Tailwind CSS configuration
+│   └── postcss.config.js         <br>  # PostCSS configuration
+├── server/                       <br>  # Backend folder
+│   ├── Controllers/              <br>  # Logic for routes
+│   ├── Middlewares/              <br>  # Custom middleware (e.g., authentication)
+│   ├── Models/                   <br>  # MongoDB schemas
+│   ├── Routes/                   <br>  # API endpoints
+│   ├── uploads/                  <br>  # For storing uploaded files
+│   ├── node_modules/             <br>  # Backend dependencies
+│   ├── .env                      <br>  # Environment variables (ignored by Git)
+│   ├── index.js                  <br>  # Entry point for the backend server
+│   ├── package.json              <br>  # Backend dependencies and scripts
+│   └── package-lock.json         <br>  # Lock file for backend dependencies
+├── .gitignore                    <br>  # Git ignore file
+├── README.md                     <br>  # Project documentation
 
 ## Contributing
 
