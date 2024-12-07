@@ -33,7 +33,7 @@ import {
   LogOut,
   X,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DynamicFavicon } from "./DynamicFavicon.tsx";
 import ImageCarousel from "./ImageCarousel.tsx";
 
@@ -235,6 +235,8 @@ const HomePage: React.FC = () => {
 
     requestAnimationFrame(animation);
   };
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -252,16 +254,15 @@ const HomePage: React.FC = () => {
             </span>
           </div>
           <div className="hidden md:flex space-x-8">
-            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
+            <a href="/home" className={`text-gray-600 hover:text-orange-500 font-bold text-xl ${
+              isActive("/home") ? "text-orange-500" : "text-gray-600"
+            }` }           >
               Home
             </a>
-            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
+            <a href="about" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
               About
             </a>
-            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
-              Causes
-            </a>
-            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
+            <a href="contact" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
               Contact
             </a>
           </div>
