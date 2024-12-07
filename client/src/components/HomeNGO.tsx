@@ -127,12 +127,13 @@ const HomePage: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [ngoList, setNgoList] = useState<string[]>([]);
-  const [pickups, setPickups] = useState<Pickup[]>([]);
+  // const [pickups, setPickups] = useState<Pickup[]>([]);
+  const [pickupData, setPickupData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showProfile, setShowProfile] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState("John Doe");
-  const [loggedEmail, setLoggedEmail] = useState("john.doe@example.com");
+  const [loggedInUser, setLoggedInUser] = useState("John Doe")
+  const [loggedEmail, setLoggedEmail] = useState("john.doe@example.com")
 
   const navigate = useNavigate();
 
@@ -144,29 +145,46 @@ const HomePage: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const fetchUserPickups = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:8080/api/pickups', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  useEffect(() => {
-    const fetchPickups = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/pickups");
-        if (!response.ok) {
-          throw new Error("No Entry Available");
-        }
-        const data = await response.json();
-        setPickups(data);
-        setLoading(false);
-      } catch (error: any) {
-        setError(error.message);
-        setLoading(false);
+      const data = await response.json();
+
+      if (response.ok) {
+        setPickupData(data);
+        console.log(data);
+      } else {
+        console.error(`Failed to fetch pickups: ${data.message}`);
       }
-    };
-
-    fetchPickups();
-  }, []);
+    } catch (error) {
+      console.error('Error fetching pickups:', error);
+    }finally{
+      setLoading(false);
+    }
+  
+  };
+ 
 
   useEffect(() => {
-    setLoggedInUser(localStorage.getItem("loggedInUser"));
-    setLoggedEmail(localStorage.getItem("loggedEmail"));
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    } else {
+      fetchUserPickups();
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    setLoggedInUser(localStorage.getItem('loggedInUser'));
+    setLoggedEmail(localStorage.getItem('loggedEmail'));
+
   }, []);
 
   // const scrollToTop = () => {
@@ -177,13 +195,12 @@ const HomePage: React.FC = () => {
     setSelectedCategory(category);
     setNgoList(getNGOs(category));
   };
-
   const handleLogout = (e) => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("loggedInUser");
-    handleSuccess("User Loggedout");
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedInUser');
+    handleSuccess('User Loggedout');
     setTimeout(() => {
-      navigate("/");
+      navigate('/');
     }, 1000);
   };
 
@@ -235,22 +252,16 @@ const HomePage: React.FC = () => {
             </span>
           </div>
           <div className="hidden md:flex space-x-8">
-            <a
-              href="#"
-              className="text-orange-500 font-bold text-xl"
-            >
+            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
               Home
             </a>
-            <a
-              href="/about"
-              className="text-gray-600 hover:text-orange-500 font-bold text-xl"
-            >
+            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
               About
             </a>
-            <a
-              href="contact"
-              className="text-gray-600 hover:text-orange-500 font-bold text-xl"
-            >
+            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
+              Causes
+            </a>
+            <a href="#" className="text-gray-600 hover:text-orange-500 font-bold text-xl">
               Contact
             </a>
           </div>
@@ -273,6 +284,66 @@ const HomePage: React.FC = () => {
         </div>
       </nav>
 
+      {/* Profile Slide-out
+      <div
+        className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform ${showProfile ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 ease-in-out z-50`}
+      >
+        <div className="p-4">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold">Profile</h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setShowProfile(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
+          <div>
+            <h1>Welcome {loggedInUser}</h1>
+            <h1>Email
+              :{loggedEmail}</h1>
+            <div className="py-4">
+              {loading ? (
+                <p>Loading pickup data...</p>
+              ) : error ? (
+                <p className="text-red-500">{error}</p>
+              ) : pickups.length > 0 ? (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Pickups</h3>
+                  <ul className="space-y-2">
+                    {pickups.map((pickup) => (
+                      <li key={pickup._id} className="border-b pb-2">
+                        <p>
+                          <strong>Date:</strong>{" "}
+                          {new Date(pickup.pickupDate).toLocaleDateString()}
+                        </p>
+                        <p>
+                          <strong>Time:</strong> {pickup.pickupTime}
+                        </p>
+                        <p>
+                          <strong>Address:</strong> {pickup.pickupAddress}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p>No pickup data available.</p>
+              )}
+            </div>
+          </div>
+          <Button
+            className="w-full mt-4"
+            variant="destructive"
+            onClick={handleLogout}
+          >
+            <LogOut className="mr-2 h-4 w-4" /> Logout
+          </Button>
+        </div>
+      </div> */}
+
       <ProfileSlideout
         showProfile={showProfile}
         setShowProfile={setShowProfile}
@@ -280,7 +351,9 @@ const HomePage: React.FC = () => {
         loggedEmail={loggedEmail}
         loading={loading}
         error={error}
-        pickups={pickups}
+        pickups={pickupData}
+        setPickupData={setPickupData}
+
         handleLogout={handleLogout}
       />
 
@@ -351,6 +424,7 @@ const HomePage: React.FC = () => {
           ))}
         </div>
 
+
         <Card
           className="mt-12 overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           id="card-become-a-volunteer"
@@ -361,6 +435,7 @@ const HomePage: React.FC = () => {
             <p className="mb-4">
               Join our team and make a difference in your community
             </p>
+
             <Button
               className="bg-white text-orange-600 hover:bg-gray-100"
               onClick={() => {

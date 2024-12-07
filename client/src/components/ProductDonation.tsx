@@ -1,3 +1,18 @@
+import React, { useState  } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const ProductDonation: React.FC = () => {
+  const [formData, setFormData] = useState({
+    pickupDate: '',
+    pickupTime: '',
+    address: '',
+  });
+  const [responseMessage, setResponseMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -23,10 +38,13 @@ const ProductDonation: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/api/pickup", {
-        method: "POST",
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:8080/api/pickup', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify({
           pickupDate: formData.pickupDate,
@@ -38,6 +56,7 @@ const ProductDonation: React.FC = () => {
       const data = await response.json();
 
       if (response.ok) {
+
         setResponseMessage("Product donation submitted successfully!");
         setFormData({ pickupDate: "", pickupTime: "", address: "" });
         // Reset form

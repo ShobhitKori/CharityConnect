@@ -1,9 +1,9 @@
 const express = require('express');
-const { createPickup } = require('../Controllers/PickupController');
-const { getAllPickups } = require('../Controllers/PickupController');
 const router = express.Router();
+const PickupController = require('../Controllers/PickupController');
+const authMiddleware = require('../Middlewares/authMiddleware');
 
-// POST route to handle form submissions
-router.post('/pickup', createPickup);
-router.get('/pickups', getAllPickups);
+
+router.post('/pickup', authMiddleware, PickupController.createPickup);
+router.get('/pickups', authMiddleware, PickupController.getAllPickups);
 module.exports = router;

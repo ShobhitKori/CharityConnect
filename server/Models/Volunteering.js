@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+
 const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
+
 const Schema = mongoose.Schema;
 
 const VolunteeringSchema = new Schema({
@@ -11,7 +13,9 @@ const VolunteeringSchema = new Schema({
   phone: {
     type: String,
     required: true,
-    match: /^[0-9]{10}$/, // Validates a 10-digit phone number
+
+    match: /^[0-9]{10}$/, 
+
   },
   address: {
     type: String,
@@ -21,7 +25,9 @@ const VolunteeringSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Validates email format
+
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 
+
   },
   collegename: {
     type: String,
@@ -38,10 +44,12 @@ const VolunteeringSchema = new Schema({
   },
   description: {
     type: String,
-    default: '', // Optional field
+
+    default: '', 
   },
   workinghour: {
-    type: String, // Example: "9 AM - 5 PM"
+    type: String, 
+
     required: true,
   },
   password: {

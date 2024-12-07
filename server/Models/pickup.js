@@ -19,6 +19,13 @@ const pickupSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users', // Reference to the User model
+    required: true,
+  },
+
 });
 
 // Create and export the model

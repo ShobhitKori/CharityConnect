@@ -33,6 +33,7 @@ export default function Signup() {
     const { name, value } = e.target;
     const copySignupInfo = { ...signupInfo };
     copySignupInfo[name] = value;
+
     console.log(name, value);
     setSignupInfo(copySignupInfo);
     console.log(signupInfo);
@@ -157,7 +158,6 @@ export default function Signup() {
             >
               Sign Up
             </Button>
-
             <ToastContainer />
             <div className="relative">
               <div className="absolute inset-0 flex items-center">

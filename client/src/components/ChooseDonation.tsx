@@ -12,8 +12,10 @@ const ChooseDonation: React.FC = () => {
   const formattedNgoName = ngoName?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   const navigate = useNavigate();
   return (
+
     <div className="min-h-screen flex flex-col bg-gray-100 mt-16">
       <NavBar />
+
       <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-center mb-8">Donate to {formattedNgoName}</h1>
         <div className="flex justify-center space-x-4 mb-8">

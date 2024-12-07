@@ -65,7 +65,7 @@ const LandingPage: React.FC = () => {
           <img src="./ngoLogo.png" alt="NGO Logo" className="w-10 h-10 rounded-full" />
           <span className="ml-2 text-3xl font-bold">Charity Connect</span>
         </Link>
-        
+
         <nav className="ml-auto flex gap-4 sm:gap-6 bg-white shadow-md fixed top-0 left-0 right-0 z-50">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             {/* Left side: Logo and title */}
