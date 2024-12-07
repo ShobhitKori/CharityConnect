@@ -128,6 +128,7 @@ const HomePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [ngoList, setNgoList] = useState<string[]>([]);
   // const [pickups, setPickups] = useState<Pickup[]>([]);
+  const [donation, setDonation] = useState("");
   const [pickupData, setPickupData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -192,6 +193,7 @@ const HomePage: React.FC = () => {
   // };
 
   const handleDonateClick = (category: string) => {
+    setDonation(category);
     setSelectedCategory(category);
     setNgoList(getNGOs(category));
   };
@@ -285,66 +287,6 @@ const HomePage: React.FC = () => {
         </div>
       </nav>
 
-      {/* Profile Slide-out
-      <div
-        className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform ${showProfile ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-300 ease-in-out z-50`}
-      >
-        <div className="p-4">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Profile</h2>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setShowProfile(false)}
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
-          <div>
-            <h1>Welcome {loggedInUser}</h1>
-            <h1>Email
-              :{loggedEmail}</h1>
-            <div className="py-4">
-              {loading ? (
-                <p>Loading pickup data...</p>
-              ) : error ? (
-                <p className="text-red-500">{error}</p>
-              ) : pickups.length > 0 ? (
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Pickups</h3>
-                  <ul className="space-y-2">
-                    {pickups.map((pickup) => (
-                      <li key={pickup._id} className="border-b pb-2">
-                        <p>
-                          <strong>Date:</strong>{" "}
-                          {new Date(pickup.pickupDate).toLocaleDateString()}
-                        </p>
-                        <p>
-                          <strong>Time:</strong> {pickup.pickupTime}
-                        </p>
-                        <p>
-                          <strong>Address:</strong> {pickup.pickupAddress}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <p>No pickup data available.</p>
-              )}
-            </div>
-          </div>
-          <Button
-            className="w-full mt-4"
-            variant="destructive"
-            onClick={handleLogout}
-          >
-            <LogOut className="mr-2 h-4 w-4" /> Logout
-          </Button>
-        </div>
-      </div> */}
-
       <ProfileSlideout
         showProfile={showProfile}
         setShowProfile={setShowProfile}
@@ -354,7 +296,6 @@ const HomePage: React.FC = () => {
         error={error}
         pickups={pickupData}
         setPickupData={setPickupData}
-
         handleLogout={handleLogout}
       />
 
@@ -564,6 +505,18 @@ const HomePage: React.FC = () => {
                 {ngo}
               </Button>
             ))}
+            { ['food', 'elderly', 'animals', 'children'].includes(donation.toLocaleLowerCase()) &&
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  navigate(
+                    `/${donation?.toLowerCase()}/khushiyan-org`
+                  );
+                }}
+              >
+                Khushiyan Organisation
+              </Button>
+            }
           </div>
         </DialogContent>
       </Dialog>

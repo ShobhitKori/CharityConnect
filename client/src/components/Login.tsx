@@ -14,8 +14,8 @@ import {
   CardDescription,
 } from "./ui/card.tsx";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-// import Alert from "@mui/material/Alert";
-// import AlertTitle from "@mui/material/AlertTitle";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "./utils.js";
 import { DynamicFavicon } from "./DynamicFavicon.tsx";
@@ -28,7 +28,7 @@ export default function Login() {
   });
 
   const navigate = useNavigate();
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     const copyLoginInfo = { ...loginInfo };
@@ -58,12 +58,15 @@ export default function Login() {
           navigate("/home");
         }, 1000);
       } else if (error) {
+        setError(error.message);
         handleError(error.message);
       } else if (!success) {
+        setError(error.message);
         handleChange(error.message);
       }
-    } catch (err) {
-      handleError(err);
+    } catch (error) {
+      setError(error.message);
+      handleError(error);
     }
   };
 
@@ -138,12 +141,12 @@ export default function Login() {
             >
               Login
             </Button>
-            {/* {error && (
+            {error && (
               <Alert severity="error" style={{ marginTop: "20px" }}>
                 <AlertTitle>Error</AlertTitle>
                 Invalid username or password
               </Alert>
-            )} */}
+            )}
             <ToastContainer />
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
