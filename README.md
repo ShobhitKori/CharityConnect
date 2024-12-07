@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Charity Connect 🌍
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React-based website for a Non-Profit Organization serves as a platform to connect donors with NGOs in need. The platform allows users to make monetary donations or contribute essential products to registered NGOs, ensuring that resources reach those who need them most. With a user-friendly interface, secure payment options, and a transparent tracking system, the website aims to promote a culture of giving and support community welfare.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Responsive Design:** Optimized for mobile, tablet, and desktop.
+- **Volunteer Engagement:** Encourages users to sign up and contribute.
+- **Dynamic Navigation:** Smooth scrolling to different sections of the site.
+- **Custom UI Components:** Built with Tailwind CSS and reusable components.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend:**
+  - [React](https://reactjs.org/) – JavaScript library for building user interfaces.
+  - [React Router](https://reactrouter.com/) – For client-side routing.
+  - [Tailwind CSS](https://tailwindcss.com/) – For styling and layout.
+  - [Lucide Icons](https://lucide.dev/) – For modern SVG icons.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Backend:** (Optional for future integration)
+  - [Node.js](https://nodejs.org/) – Runtime environment.
+  - [Express.js](https://expressjs.com/) – Backend framework.
+  - [MongoDB](https://www.mongodb.com/) – Database for storing dynamic content.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+Ensure you have the following installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/) (v14+)
+- [npm](https://www.npmjs.com/)
+- [mongodb](https://www.mongodb.com/try/download/community)
+  
+Create a free cluster in mongodb and paste your connection string in the server/.env file 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
 
-### `npm run eject`
+git clone [https://github.com/ShobhitKori/CharityConnect](https://github.com/ShobhitKori/CharityConnect.git)   <br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`cd CharityConnect`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+CharityConnect `> cd server`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`npm install`
 
-## Learn More
+Go to server folder and install dependencies again:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+CharityConnect `> cd client`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`npm install`
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Running the App
 
-### Analyzing the Bundle Size
+To start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+CharityConnect/client `> npm start`
 
-### Making a Progressive Web App
+The app will be available at `http://localhost:3000`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To start the database server:
 
-### Advanced Configuration
+CharityConnect/server `> node index.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+CharityConnect/ <br>
+├── client/                         # Frontend folder <br>
+│   ├── node_modules/               # Frontend dependencies <br>
+│   ├── public/                     # Static files <br>
+│   ├── src/                        # React app source <br>
+│   │   ├── components/             # Reusable UI components <br>
+│   │   ├── pages/                  # Page components <br>
+│   │   ├── ui/                     # Custom UI elements (e.g., Card, Button) <br>
+│   │   ├── App.js                  # Main app component <br>
+│   │   └── index.js                # Entry point <br>
+│   ├── package.json                # Frontend dependencies and scripts <br>
+│   ├── tailwind.config.js          # Tailwind CSS configuration <br>
+│   └── postcss.config.js           # PostCSS configuration <br>
+├── server/                         # Backend folder <br>
+│   ├── Controllers/                # Logic for routes <br>
+│   ├── Middlewares/                # Custom middleware (e.g., authentication) <br>
+│   ├── Models/                     # MongoDB schemas <br>
+│   ├── Routes/                     # API endpoints <br>
+│   ├── uploads/                    # For storing uploaded files <br>
+│   ├── node_modules/               # Backend dependencies <br>
+│   ├── .env                        # Environment variables (ignored by Git) <br>
+│   ├── index.js                    # Entry point for the backend server <br>
+│   ├── package.json                # Backend dependencies and scripts <br>
+│   └── package-lock.json           # Lock file for backend dependencies <br>
+├── .gitignore                      # Git ignore file <br>
+├── README.md                       # Project documentation <br>
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are welcome! If you'd like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature-name`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature-name`).
+5. Open a pull request.
+
+## Contact
+
+For any inquiries or suggestions, please contact:
+
+- **Email:** [shobhitkori9@gmail.com](mailto:youremail@example.com)   [abhishekgithub19@gmail.comgmail.com](mailto:youremail@example.com)
+- **GitHub:** [Shobhit Kori](https://github.com/ShobhitKori)   [AbhisheK Kahar](https://github.com/abhishek19kahar)
