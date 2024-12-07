@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { useState } from "react";
@@ -17,9 +16,9 @@ import {
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 // import Alert from "@mui/material/Alert";
 // import AlertTitle from "@mui/material/AlertTitle";
-import { ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "./utils.js";
-
+import { DynamicFavicon } from "./DynamicFavicon.tsx";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,22 +43,22 @@ export default function Login() {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginInfo)
+        body: JSON.stringify(loginInfo),
       });
       const result = await response.json();
-      const { success, message, jwtToken,email, name, error } = result;
+      const { success, message, jwtToken, email, name, error } = result;
       if (success) {
         handleSuccess(message);
-        localStorage.setItem('token', jwtToken);
-        localStorage.setItem('loggedInUser', name);
-        localStorage.setItem('loggedEmail', email);
+        localStorage.setItem("token", jwtToken);
+        localStorage.setItem("loggedInUser", name);
+        localStorage.setItem("loggedEmail", email);
         setTimeout(() => {
-          navigate('/home')
-        }, 1000)
+          navigate("/home");
+        }, 1000);
       } else if (error) {
-         handleError(error.message);
+        handleError(error.message);
       } else if (!success) {
         handleChange(error.message);
       }
@@ -70,11 +69,16 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-light">
+      <DynamicFavicon />
       <Card className="w-full max-w-md bg-white">
         <CardHeader className="space-y-1">
-        <Link className="flex items-center justify-center" to="/">
-          <img src="./ngoLogo.png" alt="NGO Logo" className="w-14 h-14 rounded-full" />
-        </Link>
+          <Link className="flex items-center justify-center" to="/">
+            <img
+              src="./ngoLogo.png"
+              alt="NGO Logo"
+              className="w-14 h-14 rounded-full"
+            />
+          </Link>
           <CardTitle className="text-2xl font-bold text-center">
             Join Our Cause
           </CardTitle>
@@ -90,7 +94,6 @@ export default function Login() {
                 name="email"
                 type="email"
                 onChange={handleChange}
-                
                 placeholder="Enter your email"
                 required
               />

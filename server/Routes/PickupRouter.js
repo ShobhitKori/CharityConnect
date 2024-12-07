@@ -6,5 +6,4 @@ const authMiddleware = require('../Middlewares/authMiddleware');
 
 router.post('/pickup', authMiddleware, PickupController.createPickup);
 router.get('/pickups', authMiddleware, PickupController.getAllPickups);
-
 module.exports = router;

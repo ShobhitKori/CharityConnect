@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button.tsx";
 import { Card, CardContent } from "./ui/card.tsx";
 import { Input } from "./ui/input.tsx";
-import { handleSuccess } from './utils';
-import ngoLogo from "./ngoLogo.png"
+import { handleSuccess } from "./utils";
+import ngoLogo from "./ngoLogo.png";
 import ProfileSlideout from "./profileSlideout.tsx";
 
 import {
@@ -50,58 +50,66 @@ const donationOptions = [
     name: "Food",
     icon: Utensils,
     color: "from-amber-100 to-amber-200 text-amber-600",
+    background: "https://serudsindia.org/wp-content/uploads/2020/11/Donate-Money-For-Food-In-India-To-Special-Charity-Programs.png",
     progress: 75,
   },
   {
     name: "Animals",
     icon: Paw,
     color: "from-emerald-100 to-emerald-200 text-emerald-600",
+    background: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ3l29J3Ryi-hpgqsG5ZkkHhjElv-ustOEpw&s",
     progress: 60,
   },
   {
     name: "Education",
     icon: BookOpen,
     color: "from-blue-100 to-blue-200 text-blue-600",
+    background: "https://savioursfoundation.org/wp-content/uploads/2021/04/banner.jpg",
     progress: 80,
   },
   {
     name: "Elderly",
     icon: Users,
     color: "from-indigo-100 to-indigo-200 text-indigo-600",
+    background: "https://cdn.images.express.co.uk/img/dynamic/1/590x/elderly-1013634.jpg?r=1536191441819",
     progress: 45,
   },
   {
     name: "Children",
     icon: Baby,
     color: "from-pink-100 to-pink-200 text-pink-600",
+    background: "https://connect-assets.prosple.com/cdn/ff/wJsI5yR3eBGFwBb4VxCx6L6h8Q4_Cor4CrsdgWmc1Co/1567568623/public/styles/scale_890_no_upsize/public/2019-09/feature-article-Is-charity-work-right-for-me-838x484_2017.jpg?itok=M7QiD1Id",
     progress: 90,
   },
   {
     name: "Women",
     icon: Female,
     color: "from-purple-100 to-purple-200 text-purple-600",
+    background: "https://images.squarespace-cdn.com/content/v1/55436531e4b0d578c589552a/1501551404503-0KOHSH7VHI7406SJK83O/Ladli+Charity+in+Jaipur%2C+India",
     progress: 70,
   },
   {
     name: "Medicines",
     icon: Pill,
     color: "from-red-100 to-red-200 text-red-600",
+    background: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRULALEaJr3tSxPyGEpeRbe_MSctvi2UfSkgA&s",
     progress: 55,
   },
   {
     name: "Tribes",
     icon: Tent,
     color: "from-teal-100 to-teal-200 text-teal-600",
+    background: "https://www.osiligi.org/wp2/wp-content/uploads/2014/03/Warriors-1000x576.jpg",
     progress: 40,
   },
 ];
 
 const backgroundImages = [
-  'https://www.genyuvaa.com/images/t_slider_1.jpg',
-  'https://helplocal.in/uploads/ngo/240435322_4776508312361277_7003867829429765616_n.jpg',
-  'https://jananidham.org/images/uploads/slider/homepage/banner2.jpg',
-  'https://images.squarespace-cdn.com/content/v1/5dc2f01d4543244bccdd8d6b/1580728380411-3L9XLBSLKJI4YNUZ9DC1/CWD-%E2%80%93-Volunteer-Header.png',
-  'https://hrdsindia.org/img/sub-banner-donate-one-brick.jpg'
+  "https://www.genyuvaa.com/images/t_slider_1.jpg",
+  "https://helplocal.in/uploads/ngo/240435322_4776508312361277_7003867829429765616_n.jpg",
+  "https://jananidham.org/images/uploads/slider/homepage/banner2.jpg",
+  "https://images.squarespace-cdn.com/content/v1/5dc2f01d4543244bccdd8d6b/1580728380411-3L9XLBSLKJI4YNUZ9DC1/CWD-%E2%80%93-Volunteer-Header.png",
+  "https://hrdsindia.org/img/sub-banner-donate-one-brick.jpg",
 ];
 
 const getNGOs = (category: string) => {
@@ -137,8 +145,6 @@ const HomePage: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-
   const fetchUserPickups = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -189,8 +195,6 @@ const HomePage: React.FC = () => {
     setSelectedCategory(category);
     setNgoList(getNGOs(category));
   };
-
-
   const handleLogout = (e) => {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
@@ -349,6 +353,7 @@ const HomePage: React.FC = () => {
         error={error}
         pickups={pickupData}
         setPickupData={setPickupData}
+
         handleLogout={handleLogout}
       />
 
@@ -380,35 +385,48 @@ const HomePage: React.FC = () => {
           {donationOptions.map((option) => (
             <Card
               key={option.name}
-              id={`card-${option.name.toLowerCase().replace(/\s+/g, '-')}`}
+              id={`card-${option.name.toLowerCase().replace(/\s+/g, "-")}`}
               className="overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
               <CardContent
-                className={`p-6 flex flex-col items-center text-center bg-gradient-to-br ${option.color}`}
+                className={`relative p-6 flex flex-col items-center text-center bg-gradient-to-br ${option.color}`}
+                style={{
+                  backgroundImage: `
+            linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+            url('${option.background}')
+          `,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
               >
-                <option.icon className="h-12 w-12 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{option.name}</h3>
-                <p className="text-gray-700 mb-4">
-                  Support our {option.name.toLowerCase()} initiatives
-                </p>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-                  <div
-                    className="bg-blue-600 h-2.5 rounded-full"
-                    style={{ width: `${option.progress}%` }}
-                  ></div>
+                <div className="relative z-10">
+                  <option.icon className="h-12 w-12 mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">{option.name}</h3>
+                  <p className="text-gray-200 mb-4">
+                    Support our {option.name.toLowerCase()} initiatives
+                  </p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
+                    <div
+                      className="bg-blue-600 h-2.5 rounded-full"
+                      style={{ width: `${option.progress}%` }}
+                    ></div>
+                  </div>
+                  <Button
+                    className="bg-orange-900 text-gray-200 hover:bg-black"
+                    onClick={() => handleDonateClick(option.name)}
+                  >
+                    Donate for {option.name}
+                  </Button>
                 </div>
-                <Button
-                  className="bg-white text-gray-800 hover:bg-gray-100"
-                  onClick={() => handleDonateClick(option.name)}
-                >
-                  Donate for {option.name}
-                </Button>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <Card className="mt-12 overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+
+        <Card
+          className="mt-12 overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           id="card-become-a-volunteer"
         >
           <CardContent className="p-6 flex flex-col items-center text-center bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
@@ -417,8 +435,12 @@ const HomePage: React.FC = () => {
             <p className="mb-4">
               Join our team and make a difference in your community
             </p>
-            <Button className="bg-white text-orange-600 hover:bg-gray-100"
-              onClick={() => { navigate('/volunteer/apply') }}
+
+            <Button
+              className="bg-white text-orange-600 hover:bg-gray-100"
+              onClick={() => {
+                navigate("/volunteer/apply");
+              }}
             >
               Sign Up to Volunteer
             </Button>
@@ -549,5 +571,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-
-

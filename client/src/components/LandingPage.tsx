@@ -24,6 +24,38 @@ const backgroundImages = [
   'https://hrdsindia.org/img/sub-banner-donate-one-brick.jpg'
 ];
 
+  const smoothScrollTo = (targetId) => {
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+
+    const targetPosition =
+      targetElement.getBoundingClientRect().top + window.scrollY;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    const duration = 1000; // Duration of scroll in milliseconds
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeOutCubic(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+
+    // Ease-out cubic function for smooth scrolling
+    function easeOutCubic(t, b, c, d) {
+      t /= d;
+      t--;
+      return c * (t * t * t + 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  };
+
 const LandingPage: React.FC = () => {
   return (
     <div className="flex flex-col h-full min-h-screen justify-center">
@@ -33,17 +65,7 @@ const LandingPage: React.FC = () => {
           <img src="./ngoLogo.png" alt="NGO Logo" className="w-10 h-10 rounded-full" />
           <span className="ml-2 text-3xl font-bold">Charity Connect</span>
         </Link>
-        {/* <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" to="#mission">
-            Our Mission
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" to="#impact">
-            Our Impact
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" to="#get-involved">
-            Get Involved
-          </Link>
-        </nav> */}
+
         <nav className="ml-auto flex gap-4 sm:gap-6 bg-white shadow-md fixed top-0 left-0 right-0 z-50">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             {/* Left side: Logo and title */}
@@ -60,13 +82,13 @@ const LandingPage: React.FC = () => {
 
             {/* Right side: Navigation links */}
             <div className="flex gap-4 ml-auto">
-              <Link className="text-sm font-medium hover:underline underline-offset-4" to="#mission">
+              <Link to={""} className="text-sm font-medium hover:underline underline-offset-4" onClick={() => smoothScrollTo("mission")}>
                 Our Mission
               </Link>
-              <Link className="text-sm font-medium hover:underline underline-offset-4" to="#impact">
+              <Link to={""} className="text-sm font-medium hover:underline underline-offset-4" onClick={() => smoothScrollTo("impact")}>
                 Our Impact
               </Link>
-              <Link className="text-sm font-medium hover:underline underline-offset-4" to="#get-involved">
+              <Link to={""} className="text-sm font-medium hover:underline underline-offset-4" onClick={() => smoothScrollTo("get-involved")}>
                 Get Involved
               </Link>
             </div>
@@ -79,7 +101,7 @@ const LandingPage: React.FC = () => {
         <section>
           <header
             id="header"
-            className="relative bg-gray-900 text-white py-32 mt-16 overflow-hidden"
+            className="relative bg-gray-900 text-white py-32 overflow-hidden"
           >
             <ImageCarousel images={backgroundImages} />
             <div className="container mx-auto px-4 text-center relative z-10">
@@ -88,10 +110,10 @@ const LandingPage: React.FC = () => {
               </h1>
               <p className="text-xl mb-8 text-shadow-md">Join us in our mission to create lasting change and build a better world for all.</p>
               <div className="space-x-4">
-                <Button variant="outline" className='hover:bg-black' asChild>
+                <Button variant="outline" className='hover:bg-white hover:text-black' asChild>
                   <Link to="/signup">Get Started</Link>
                 </Button>
-                <Button variant="outline" className='hover:bg-black' asChild>
+                <Button variant="outline" className='hover:bg-white hover:text-black' asChild>
                   <Link to="#learn-more">Learn More</Link>
                 </Button>
               </div>
