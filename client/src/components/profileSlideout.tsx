@@ -43,33 +43,35 @@ export default function ProfileSlideout({
         } transition-transform duration-300 ease-in-out z-50`}
     >
       <div className="h-full flex flex-col p-6 text-white">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-semibold">Profile</h2>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-white hover:bg-white/10 rounded-full"
-            onClick={() => setShowProfile(false)}
-          >
-            <X className="h-5 w-5" />
-          </Button>
+        <div className="flex-none">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-2xl font-semibold">Profile</h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10 rounded-full"
+              onClick={() => setShowProfile(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
+
+          <div className="flex flex-col items-center mb-8">
+            <div
+              className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-semibold mb-4 transition-transform hover:scale-105"
+              style={{ backgroundColor: avatarColor }}
+            >
+              {initials}
+            </div>
+            <div className="relative mb-1">
+              <span className="px-3 py-1 text-sm bg-zinc-800 rounded-full">Free</span>
+            </div>
+            <h1 className="text-xl font-semibold mt-2">{loggedInUser}</h1>
+            <p className="text-zinc-400 text-sm">{loggedEmail}</p>
+          </div>
         </div>
 
-        <div className="flex flex-col items-center mb-8">
-          <div
-            className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-semibold mb-4 transition-transform hover:scale-105"
-            style={{ backgroundColor: avatarColor }}
-          >
-            {initials}
-          </div>
-          <div className="relative mb-1">
-            <span className="px-3 py-1 text-sm bg-zinc-800 rounded-full">Free</span>
-          </div>
-          <h1 className="text-xl font-semibold mt-2">{loggedInUser}</h1>
-          <p className="text-zinc-400 text-sm">{loggedEmail}</p>
-        </div>
-
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-4 overflow-y-auto min-h-0 scrollbar-thin scrollbar-thumb-zinc-600 scrollbar-track-transparent">
           <Card className="bg-zinc-900 border-zinc-800 hover:bg-zinc-800/50 transition-colors cursor-pointer p-4 rounded-xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -107,12 +109,14 @@ export default function ProfileSlideout({
           )}
         </div>
 
-        <Button
-          className="w-full mt-6 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800"
-          onClick={handleLogout}
-        >
-          <LogOut className="mr-2 h-4 w-4" /> Sign Out
-        </Button>
+        <div className="flex-none mt-6">
+          <Button
+            className="w-full bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800"
+            onClick={handleLogout}
+          >
+            <LogOut className="mr-2 h-4 w-4" /> Sign Out
+          </Button>
+        </div>
         <ToastContainer />
       </div>
     </div>

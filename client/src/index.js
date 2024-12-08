@@ -16,6 +16,7 @@ import VolunteeringForm from './components/VolunteeringForm.tsx';
 import About from './components/About.tsx';
 import Contact from './components/Contacts.tsx';
 import NotFound from './components/NotFound.tsx';
+import AnimatedPaymentCancel from './components/AnimatedPaymentCancel.tsx';
 import'react-toastify/ReactToastify.css'
 
 
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
   { path: "/voluteeringform", element: <VolunteeringForm />},
   { path: "/about", element: <About />},
   { path: "/contact", element: <Contact />},
+  { path: "/cancel", element: <AnimatedPaymentCancel />},
   { path: "*", element: <NotFound /> }
  
 ]);

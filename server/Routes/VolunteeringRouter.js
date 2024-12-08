@@ -73,7 +73,7 @@ const upload = require('../Middlewares/upload'); // Import multer config
 // Route to add volunteering data
 router.post('/add', upload.single('collegeidphoto'), async (req, res) => {
   try {
-    const { name, phone, address, email, collegename, abcid, description, workinghour,password } = req.body;
+    const { name, phone, address, email, collegename, abcid, description, workinghour } = req.body;
 
     // Create a new volunteering document
     const newVolunteering = new VolunteeringModel({
@@ -86,7 +86,6 @@ router.post('/add', upload.single('collegeidphoto'), async (req, res) => {
       description,
       workinghour,
       collegeidphoto: req.file ? req.file.path : null, // Save file path
-      password
     });
 
     // Save to database

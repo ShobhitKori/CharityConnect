@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { Button } from "./ui/button.tsx"
-import { Card, CardContent } from "./ui/card.tsx"
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Button } from "./ui/button.tsx";
+import { Card, CardContent } from "./ui/card.tsx";
 import {
   HeartHandshake,
   Globe,
@@ -11,50 +11,51 @@ import {
   Twitter,
   Instagram,
   Linkedin,
-} from 'lucide-react'
-import { DynamicFavicon } from './DynamicFavicon.tsx';
-import ImageCarousel from './ImageCarousel.tsx';
-import { Input } from './ui/input.tsx';
+} from "lucide-react";
+import { DynamicFavicon } from "./DynamicFavicon.tsx";
+import ImageCarousel from "./ImageCarousel.tsx";
+import { Input } from "./ui/input.tsx";
 
 const backgroundImages = [
-  'https://www.genyuvaa.com/images/t_slider_1.jpg',
-  'https://helplocal.in/uploads/ngo/240435322_4776508312361277_7003867829429765616_n.jpg',
-  'https://jananidham.org/images/uploads/slider/homepage/banner2.jpg',
-  'https://images.squarespace-cdn.com/content/v1/5dc2f01d4543244bccdd8d6b/1580728380411-3L9XLBSLKJI4YNUZ9DC1/CWD-%E2%80%93-Volunteer-Header.png',
-  'https://hrdsindia.org/img/sub-banner-donate-one-brick.jpg'
+  "https://t4.ftcdn.net/jpg/08/37/62/51/240_F_837625115_1gHeuoYe0JDJOOjkFxTBt11M0lZFzvBZ.jpg",
+  "https://t4.ftcdn.net/jpg/08/56/37/77/240_F_856377715_OKWDp8zaIyOTjxNzJtLxB1JPVjfV0GOU.jpg",
+  "https://images.pexels.com/photos/28101466/pexels-photo-28101466/free-photo-of-photo-of-children-drinking-water.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/6646852/pexels-photo-6646852.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/933624/pexels-photo-933624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/16465625/pexels-photo-16465625/free-photo-of-golden-retriever-lying-under-brick-wall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 ];
 
-  const smoothScrollTo = (targetId) => {
-    const targetElement = document.getElementById(targetId);
-    if (!targetElement) return;
+const smoothScrollTo = (targetId) => {
+  const targetElement = document.getElementById(targetId);
+  if (!targetElement) return;
 
-    const targetPosition =
-      targetElement.getBoundingClientRect().top + window.scrollY;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 1000; // Duration of scroll in milliseconds
-    let startTime = null;
+  const targetPosition =
+    targetElement.getBoundingClientRect().top + window.scrollY;
+  const startPosition = window.scrollY;
+  const distance = targetPosition - startPosition;
+  const duration = 1000; // Duration of scroll in milliseconds
+  let startTime = null;
 
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = easeOutCubic(timeElapsed, startPosition, distance, duration);
-      window.scrollTo(0, run);
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = easeOutCubic(timeElapsed, startPosition, distance, duration);
+    window.scrollTo(0, run);
 
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
     }
+  }
 
-    // Ease-out cubic function for smooth scrolling
-    function easeOutCubic(t, b, c, d) {
-      t /= d;
-      t--;
-      return c * (t * t * t + 1) + b;
-    }
+  // Ease-out cubic function for smooth scrolling
+  function easeOutCubic(t, b, c, d) {
+    t /= d;
+    t--;
+    return c * (t * t * t + 1) + b;
+  }
 
-    requestAnimationFrame(animation);
-  };
+  requestAnimationFrame(animation);
+};
 
 const LandingPage: React.FC = () => {
   return (
@@ -62,7 +63,11 @@ const LandingPage: React.FC = () => {
       <DynamicFavicon />
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link className="flex items-center justify-center" to="/">
-          <img src="./ngoLogo.png" alt="NGO Logo" className="w-10 h-10 rounded-full" />
+          <img
+            src="./ngoLogo.png"
+            alt="NGO Logo"
+            className="w-10 h-10 rounded-full"
+          />
           <span className="ml-2 text-3xl font-bold">Charity Connect</span>
         </Link>
 
@@ -82,19 +87,30 @@ const LandingPage: React.FC = () => {
 
             {/* Right side: Navigation links */}
             <div className="flex gap-4 ml-auto">
-              <Link to={""} className="text-sm font-medium hover:underline underline-offset-4" onClick={() => smoothScrollTo("mission")}>
+              <Link
+                to={""}
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => smoothScrollTo("mission")}
+              >
                 Our Mission
               </Link>
-              <Link to={""} className="text-sm font-medium hover:underline underline-offset-4" onClick={() => smoothScrollTo("impact")}>
+              <Link
+                to={""}
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => smoothScrollTo("impact")}
+              >
                 Our Impact
               </Link>
-              <Link to={""} className="text-sm font-medium hover:underline underline-offset-4" onClick={() => smoothScrollTo("get-involved")}>
+              <Link
+                to={""}
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => smoothScrollTo("get-involved")}
+              >
                 Get Involved
               </Link>
             </div>
           </div>
         </nav>
-
       </header>
 
       <main className="flex-1 items-center justify-center">
@@ -108,12 +124,23 @@ const LandingPage: React.FC = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-shadow-lg">
                 Empowering Communities, Changing Lives
               </h1>
-              <p className="text-xl mb-8 text-shadow-md">Join us in our mission to create lasting change and build a better world for all.</p>
+              <p className="text-xl mb-8 text-shadow-md">
+                Join us in our mission to create lasting change and build a
+                better world for all.
+              </p>
               <div className="space-x-4">
-                <Button variant="outline" className='hover:bg-white hover:text-black' asChild>
+                <Button
+                  variant="outline"
+                  className="hover:bg-white hover:text-black"
+                  asChild
+                >
                   <Link to="/signup">Get Started</Link>
                 </Button>
-                <Button variant="outline" className='hover:bg-white hover:text-black' asChild>
+                <Button
+                  variant="outline"
+                  className="hover:bg-white hover:text-black"
+                  asChild
+                >
                   <Link to="#learn-more">Learn More</Link>
                 </Button>
               </div>
@@ -121,60 +148,90 @@ const LandingPage: React.FC = () => {
           </header>
         </section>
 
-        <section id="mission" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+        <section
+          id="mission"
+          className="w-full py-12 md:py-24 lg:py-32 bg-white"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Our Mission</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+              Our Mission
+            </h2>
             <div className="grid gap-6 lg:grid-cols-3 items-stretch">
               <Card>
                 <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                   <HeartHandshake className="h-12 w-12 text-purple-600" />
                   <h3 className="text-2xl font-bold">Community Support</h3>
-                  <p className="text-gray-500">Providing resources and assistance to underserved communities worldwide.</p>
+                  <p className="text-gray-500">
+                    Providing resources and assistance to underserved
+                    communities worldwide.
+                  </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                   <Globe className="h-12 w-12 text-purple-600" />
                   <h3 className="text-2xl font-bold">Global Impact</h3>
-                  <p className="text-gray-500">Creating sustainable solutions to address global challenges.</p>
+                  <p className="text-gray-500">
+                    Creating sustainable solutions to address global challenges.
+                  </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                   <Users className="h-12 w-12 text-purple-600" />
                   <h3 className="text-2xl font-bold">Volunteer Engagement</h3>
-                  <p className="text-gray-500">Empowering individuals to make a difference through meaningful volunteer opportunities.</p>
+                  <p className="text-gray-500">
+                    Empowering individuals to make a difference through
+                    meaningful volunteer opportunities.
+                  </p>
                 </CardContent>
               </Card>
             </div>
           </div>
         </section>
-        <section id="impact" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
+        <section
+          id="impact"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Our Impact</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+              Our Impact
+            </h2>
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                 <span className="text-4xl font-bold text-purple-600">100+</span>
-                <span className="text-xl font-semibold text-gray-700">Projects Completed</span>
+                <span className="text-xl font-semibold text-gray-700">
+                  Projects Completed
+                </span>
               </div>
               <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                 <span className="text-4xl font-bold text-purple-600">50K+</span>
-                <span className="text-xl font-semibold text-gray-700">Lives Impacted</span>
+                <span className="text-xl font-semibold text-gray-700">
+                  Lives Impacted
+                </span>
               </div>
               <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                 <span className="text-4xl font-bold text-purple-600">25+</span>
-                <span className="text-xl font-semibold text-gray-700">Countries Reached</span>
+                <span className="text-xl font-semibold text-gray-700">
+                  Countries Reached
+                </span>
               </div>
             </div>
           </div>
         </section>
-        <section id="get-involved" className="w-full py-12 md:py-24 lg:py-32 bg-purple-600 text-white">
+        <section
+          id="get-involved"
+          className="w-full py-12 md:py-24 lg:py-32 bg-purple-600 text-white"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get Involved Today</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Get Involved Today
+                </h2>
                 <p className="mx-auto max-w-[700px] text-purple-100 md:text-xl">
-                  Your support can make a real difference. Join our community of changemakers and help us create a better world.
+                  Your support can make a real difference. Join our community of
+                  changemakers and help us create a better world.
                 </p>
               </div>
               <Button asChild variant="secondary" size="lg">
@@ -267,4 +324,4 @@ const LandingPage: React.FC = () => {
   );
 };
 
-export default LandingPage
+export default LandingPage;

@@ -72,7 +72,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-light">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100">
       <DynamicFavicon />
       <Card className="w-full max-w-md bg-white">
         <CardHeader className="space-y-1">
@@ -80,7 +80,9 @@ export default function Signup() {
             <img
               src="./ngoLogo.png"
               alt="NGO Logo"
-              className="w-14 h-14 rounded-full"
+              className="rounded-full"
+              width={100}
+              height={100}
             />
           </Link>
           <CardTitle className="text-2xl font-bold text-center">
@@ -153,7 +155,7 @@ export default function Signup() {
               </label>
             </div>
             <Button
-              className="w-full bg-purple-600 hover:bg-purple-700"
+              className="w-full bg-gradient-to-r from-blue-100 to-purple-100 hover:from-purple-100 hover:to-blue-100"
               type="submit"
             >
               Sign Up
