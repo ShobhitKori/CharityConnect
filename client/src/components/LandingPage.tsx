@@ -17,8 +17,8 @@ import ImageCarousel from "./ImageCarousel.tsx";
 import { Input } from "./ui/input.tsx";
 
 const backgroundImages = [
-  "https://t4.ftcdn.net/jpg/08/37/62/51/240_F_837625115_1gHeuoYe0JDJOOjkFxTBt11M0lZFzvBZ.jpg",
-  "https://t4.ftcdn.net/jpg/08/56/37/77/240_F_856377715_OKWDp8zaIyOTjxNzJtLxB1JPVjfV0GOU.jpg",
+  // "https://t4.ftcdn.net/jpg/08/37/62/51/240_F_837625115_1gHeuoYe0JDJOOjkFxTBt11M0lZFzvBZ.jpg",
+  // "https://t4.ftcdn.net/jpg/08/56/37/77/240_F_856377715_OKWDp8zaIyOTjxNzJtLxB1JPVjfV0GOU.jpg",
   "https://images.pexels.com/photos/28101466/pexels-photo-28101466/free-photo-of-photo-of-children-drinking-water.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/6646852/pexels-photo-6646852.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/933624/pexels-photo-933624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",

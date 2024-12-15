@@ -5,6 +5,7 @@ import { Input } from "./ui/input.tsx";
 import { handleSuccess } from "./utils";
 import ngoLogo from "./ngoLogo.png";
 import ProfileSlideout from "./profileSlideout.tsx";
+import ScrollableFundraisingContainer from "./ScrollableFundraisingContainer.tsx";
 
 import {
   Dialog,
@@ -388,6 +389,7 @@ const HomePage: React.FC = () => {
             </Button>
           </CardContent>
         </Card>
+        <ScrollableFundraisingContainer />
       </main>
 
       <footer className="bg-black text-white py-12 mt-12">

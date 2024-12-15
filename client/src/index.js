@@ -17,6 +17,7 @@ import About from './components/About.tsx';
 import Contact from './components/Contacts.tsx';
 import NotFound from './components/NotFound.tsx';
 import AnimatedPaymentCancel from './components/AnimatedPaymentCancel.tsx';
+import SpecialDonation from './components/SpecialDonate.tsx';
 import'react-toastify/ReactToastify.css'
 
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
   { path: "/signup", element: <Signup />},
   { path: "/signin", element: <Login />},
   { path: "/home", element: <HomeNGO />},
+  { path: "/support/:cause", element: <SpecialDonation />},
   { path: "/:product/:ngoName", element: <ChooseDonation />},
   { path: "/userdashboard", element: <UserDashboard />},
   { path: "/paymentsucess", element: <PaymentSucess />},
